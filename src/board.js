@@ -48,10 +48,23 @@ class Board{
     this.grid[row][col] = val;
   }
   addFixedCell(){
-    this.grid[0][0] = 2;
-    this.grid[1][0] = 2;
-    this.grid[2][0] = 4;
-    this.grid[3][0] = 4;
+    this.grid[0][0] = 0;
+    this.grid[0][1] = 2;
+    this.grid[0][2] = 4;
+    this.grid[0][3] = 8;
+    this.grid[1][0] = 16;
+    this.grid[1][1] = 32;
+    this.grid[1][2] = 64;
+    this.grid[1][3] = 128;
+    this.grid[2][0] = 256;
+    this.grid[2][1] = 512;
+    this.grid[2][2] = 1024;
+    this.grid[2][3] = 2048;
+    this.grid[3][0] = 0;
+    this.grid[3][1] = 2;
+    this.grid[3][2] = 4;
+    this.grid[3][3] = 8;
+
   }
 
 
@@ -136,6 +149,32 @@ class Board{
     }
     this.potScore = 0;
     return true;
+  }
+  draw(ctx){
+    const colors ={
+      0:'#CBC1B5',
+      2:'#EDE4DB',
+      4:'#EBE0CB',
+      8:'#EAB381',
+      16:'#E9996C',
+      32:'#E88266',
+      64:'#E66747',
+      128:'#ECD590',
+      256:'#EACA74',
+      512:'#EAC568',
+      1024:'#E8C15A',
+      2048:'#EABF51',
+    };
+    for(let i = 0; i < this.size; i++){
+      for(let j = 0; j < this.size; j++){
+        const val =this.grid[i][j];
+        ctx.fillStyle = colors[val];
+        ctx.fillRect( (120) * j, (120) * i, 100, 100 );
+        ctx.fillStyle = '#000000';
+        ctx.fillText(val, ((120) * j) + 50, ((120) * i) + 50);
+
+      }
+    }
   }
 
 }
