@@ -15,9 +15,9 @@ class Board{
     this.potScore = 0;
     this.score = 0;
     this.DIRS = ['up', 'down', 'left', 'right'];
-    // this.addRandomCell();
-    // this.addRandomCell();
-    this.addFixedCell();
+    this.addRandomCell();
+    this.addRandomCell();
+    // this.addFixedCell();
   }
 
   makeGrid(size){
@@ -151,6 +151,8 @@ class Board{
     return true;
   }
   draw(ctx){
+    ctx.fillStyle = '#B9ADA1';
+    ctx.fillRect(0, 0, 500, 500);
     const colors ={
       0:'#CBC1B5',
       2:'#EDE4DB',
@@ -167,16 +169,23 @@ class Board{
     };
     for(let i = 0; i < this.size; i++){
       for(let j = 0; j < this.size; j++){
-        const val =this.grid[i][j];
+        const val = this.grid[i][j];
         ctx.fillStyle = colors[val];
-        ctx.fillRect( (120) * j, (120) * i, 100, 100 );
-        ctx.fillStyle = '#000000';
-        ctx.fillText(val, ((120) * j) + 50, ((120) * i) + 50);
+        ctx.fillRect( ((120) * j) + 20, ((120) * i) + 20, 100, 100 );
+        if (val){
+          ctx.font = '30px sans-serif';
+          ctx.textAlign = 'center';
+          if(val < 8){
+            ctx.fillStyle = '#756E66';
+          } else {
+          ctx.fillStyle = '#FFFFFF';
+          }
+          ctx.fillText(val, ((120) * j) + 70, ((120) * i) + 80);
 
+        }
       }
     }
   }
-
 }
 
 export default Board;

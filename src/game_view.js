@@ -2,22 +2,24 @@ class GameView{
   constructor(game, ctx){
     this.ctx = ctx;
     this.game = game;
+    this.score = document.getElementsByClassName('score')[0];
+
 
   }
   bindKeyHandlers(){
-    key('w', () =>{
+    key('w, up', () =>{
         this.game.board.makeMove('up');
         this.draw();
       });
-    key('a', () =>{
+    key('a, left', () =>{
         this.game.board.makeMove('left');
         this.draw();
       });
-    key('s', () =>{
+    key('s, down', () =>{
         this.game.board.makeMove('down');
         this.draw();
       });
-    key('d', () =>{
+    key('d, right', () =>{
         this.game.board.makeMove('right');
         this.draw();
       });
@@ -31,6 +33,7 @@ class GameView{
 
   draw(){
     this.game.board.draw(this.ctx);
+    this.score.innerHTML = this.game.board.score;
   }
 }
 
