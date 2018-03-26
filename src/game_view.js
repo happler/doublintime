@@ -6,7 +6,7 @@ class GameView{
     this.ctx = ctx;
     this.game = game;
     this.resetGame = this.resetGame.bind(this);
-    this.draw = this.draw.bind(this);
+    // this.draw = this.draw.bind(this);
 
   }
 
@@ -18,19 +18,15 @@ class GameView{
   bindKeyHandlers(){
     key('w, up', 'all',  () =>{
         this.game.board.makeMove('up');
-        // this.draw();
       });
     key('a, left', 'all', () =>{
         this.game.board.makeMove('left');
-        // this.draw();
       });
     key('s, down', 'all', () =>{
         this.game.board.makeMove('down');
-        // this.draw();
       });
     key('d, right', 'all', () =>{
         this.game.board.makeMove('right');
-        // this.draw();
       });
     const button = document.getElementsByClassName('new-game-button')[0];
     button.addEventListener('click', this.resetGame);
@@ -48,13 +44,12 @@ class GameView{
   start(){
     this.removeKeyHandlers();
     this.bindKeyHandlers();
-    requestAnimationFrame(() => this.draw());
+    // requestAnimationFrame(() => this.draw());
   }
 
-  draw(){
-    this.game.board.draw(this.ctx);
-    this.score.innerHTML = this.game.board.score;
-  }
+  // draw(){
+  //   this.game.board.draw();
+  // }
 }
 
 export default GameView;

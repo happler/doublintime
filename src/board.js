@@ -20,6 +20,7 @@ class Board{
     this.DIRS = ['up', 'down', 'left', 'right'];
 
     this.draw = this.draw.bind(this);
+    this.draw();
     this.addRandomCell(this.emptySpaces());
     this.addRandomCell(this.emptySpaces());
     // this.addFixedCell();
@@ -43,12 +44,6 @@ class Board{
     const randomCell = empties[Math.floor(Math.random() * empties.length)];
     const val = Math.random() > .8 ? 4 : 2;
     this.grid[randomCell[0]][randomCell[1]] = val;
-
-    // debugger
-    // debugger
-    // this.drawNewSquare(randomCell[0], randomCell[1], val, 3);
-    // debugger
-    // this.drawNewSquare(randomCell[0], randomCell[1], val, 4);
     setTimeout(() => {
       this.drawNewSquare(randomCell[0], randomCell[1], val, 1);
       setTimeout(() => {
@@ -58,12 +53,13 @@ class Board{
           setTimeout(() => {
             this.drawNewSquare(randomCell[0], randomCell[1], val, 4);
 
-          }, 35);
+          }, 25);
 
-        }, 35);
+        }, 25);
 
-      }, 35);
-    }, 35 );
+      }, 25);
+
+    }, 25 );
   }
 
   addFixedCell(){
