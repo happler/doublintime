@@ -1,4 +1,4 @@
-import { zip, reverse, unzip, isEqual } from 'lodash';
+import { zip, reverse, unzip, isEqual, cloneDeep } from 'lodash';
 
 const BOARD_DISPLAY=[
   [0,0,0,0],
@@ -14,10 +14,11 @@ class Board{
     this.grid = this.makeGrid(size);
     this.potScore = 0;
     this.score = 0;
+    this.gameOver = false;
     this.DIRS = ['up', 'down', 'left', 'right'];
-    this.addRandomCell(this.emptySpaces());
-    this.addRandomCell(this.emptySpaces());
-    // this.addFixedCell();
+    // this.addRandomCell(this.emptySpaces());
+    // this.addRandomCell(this.emptySpaces());
+    this.addFixedCell();
   }
 
   makeGrid(size){
@@ -32,21 +33,21 @@ class Board{
     }
     return grid;
   }
-  oldAddRandomCell(){
-    let row = Math.floor(Math.random() * this.size);
-    let col = Math.floor(Math.random() * this.size);
-    while(this.grid[row][col]){
-      row = Math.floor(Math.random() * this.size);
-      col = Math.floor(Math.random() * this.size);
-    }
-    let val;
-    if(this.score < 2000){
-      val = 2;
-    }else{
-      val = ((Math.floor(Math.random() * 2) * 2) + 2);
-    }
-    this.grid[row][col] = val;
-  }
+  // oldAddRandomCell(){
+  //   let row = Math.floor(Math.random() * this.size);
+  //   let col = Math.floor(Math.random() * this.size);
+  //   while(this.grid[row][col]){
+  //     row = Math.floor(Math.random() * this.size);
+  //     col = Math.floor(Math.random() * this.size);
+  //   }
+  //   let val;
+  //   if(this.score < 2000){
+  //     val = 2;
+  //   }else{
+  //     val = ((Math.floor(Math.random() * 2) * 2) + 2);
+  //   }
+  //   this.grid[row][col] = val;
+  // }
 
   addRandomCell(empties){
     const randomCell = empties[Math.floor(Math.random() * empties.length)];
@@ -67,7 +68,7 @@ class Board{
     this.grid[2][1] = 512;
     this.grid[2][2] = 1024;
     this.grid[2][3] = 2048;
-    this.grid[3][0] = 0;
+    this.grid[3][0] = 4;
     this.grid[3][1] = 2;
     this.grid[3][2] = 4;
     this.grid[3][3] = 8;
@@ -95,28 +96,28 @@ class Board{
   }
 
   potMove(dir){
-    let modArr;
+    let modArr = cloneDeep(this.grid);
     let collArr;
     switch (dir) {
       case 'up':
-        modArr = zip(...this.grid);
+        modArr = zip(...modArr);
         collArr = modArr.map(tRow => this.collapse(tRow));
         collArr = unzip(collArr);
         break;
       case 'down':
-      modArr = zip(...this.grid);
-      modArr = modArr.map(row => reverse(row));
-      collArr = modArr.map(tRow => this.collapse(tRow));
-      collArr = collArr.map(row => reverse(row));
-      collArr = unzip(collArr);
+        modArr = zip(...modArr);
+        modArr = modArr.map(row => reverse(row));
+        collArr = modArr.map(tRow => this.collapse(tRow));
+        collArr = collArr.map(row => reverse(row));
+        collArr = unzip(collArr);
         break;
       case 'right':
-        modArr = this.grid.map(row => reverse(row));
+        modArr = modArr.map(row => reverse(row));
         collArr = modArr.map(tRow => this.collapse(tRow));
         collArr = collArr.map(row =>reverse(row));
         break;
       case 'left':
-        collArr = this.grid.map(row => this.collapse(row));
+        collArr = modArr.map(row => this.collapse(row));
         break;
       default:
         collArr = this.grid;
@@ -131,8 +132,11 @@ class Board{
       this.potScore = 0;
       this.grid = postMove;
       const empties = this.emptySpaces();
-      if(!empties.length && !this.isOver()){
+      if(empties.length){
         this.addRandomCell(empties);
+        if(this.isOver()){
+          this.gameOver = true;
+        }
       }
     }
 
@@ -149,9 +153,10 @@ class Board{
     return empties;
   }
   isOver(){
+    debugger
     for(let i = 0; i < this.DIRS.length; i++){
-      
-       if(!isEqual(this.potMoves(this.DIRS[i]), this.grid)){
+
+       if(!isEqual(this.potMove(this.DIRS[i]), this.grid)){
          this.potScore = 0;
          return false;
        }
@@ -176,6 +181,7 @@ class Board{
       1024:'#E8C15A',
       2048:'#EABF51',
     };
+    // console.log(this.grid);
     for(let i = 0; i < this.size; i++){
       for(let j = 0; j < this.size; j++){
         const val = this.grid[i][j];
