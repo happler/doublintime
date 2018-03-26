@@ -1,3 +1,6 @@
+import Game from './game';
+
+
 class GameView{
   constructor(game, ctx){
     this.ctx = ctx;
@@ -25,6 +28,13 @@ class GameView{
       });
 
   }
+
+  // const button = document.getElementsByClassName('new-game-button')[0];
+  // console.log("here's a button");
+  // console.log(button);
+  // button.addEventListener('click', () => {
+  //   this.game = new Game();
+  // });
 
   start(){
     this.bindKeyHandlers();
