@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --watch --mode development --module-bind js=babel-loader",
-    "build": "webpack --watch --mode production --module-bind js=babel-loader"
+    "dev": "webpack --watch --mode development --module-bind js=babel-loader --output ../../index.html",
+    "build": "webpack --watch --mode production --module-bind js=babel-loader --output ../../index.html"
   },
   "repository": {
     "type": "git",
