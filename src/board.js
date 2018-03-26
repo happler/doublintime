@@ -9,13 +9,17 @@ const BOARD_DISPLAY=[
 
 
 class Board{
-  constructor(size = 4){
+  constructor(ctx, size = 4){
     this.size = size;
+    this.ctx = ctx;
     this.grid = this.makeGrid(size);
     this.potScore = 0;
     this.score = 0;
     this.gameOver = false;
+    this.scoreDOM = document.getElementsByClassName('score')[0];
     this.DIRS = ['up', 'down', 'left', 'right'];
+
+    this.draw = this.draw.bind(this);
     this.addRandomCell(this.emptySpaces());
     this.addRandomCell(this.emptySpaces());
     // this.addFixedCell();
@@ -34,10 +38,32 @@ class Board{
     return grid;
   }
 
+
   addRandomCell(empties){
     const randomCell = empties[Math.floor(Math.random() * empties.length)];
     const val = Math.random() > .8 ? 4 : 2;
     this.grid[randomCell[0]][randomCell[1]] = val;
+
+    // debugger
+    // debugger
+    // this.drawNewSquare(randomCell[0], randomCell[1], val, 3);
+    // debugger
+    // this.drawNewSquare(randomCell[0], randomCell[1], val, 4);
+    setTimeout(() => {
+      this.drawNewSquare(randomCell[0], randomCell[1], val, 1);
+      setTimeout(() => {
+        this.drawNewSquare(randomCell[0], randomCell[1], val, 2);
+        setTimeout(() => {
+          this.drawNewSquare(randomCell[0], randomCell[1], val, 3);
+          setTimeout(() => {
+            this.drawNewSquare(randomCell[0], randomCell[1], val, 4);
+
+          }, 35);
+
+        }, 35);
+
+      }, 35);
+    }, 35 );
   }
 
   addFixedCell(){
@@ -116,6 +142,7 @@ class Board{
       this.score += this.potScore;
       this.potScore = 0;
       this.grid = postMove;
+      this.draw();
       const empties = this.emptySpaces();
       if(empties.length){
         this.addRandomCell(empties);
@@ -148,9 +175,22 @@ class Board{
     this.potScore = 0;
     return true;
   }
-  draw(ctx){
-    ctx.fillStyle = '#B9ADA1';
-    ctx.fillRect(0, 0, 500, 500);
+
+  drawNewSquare(row, col, val, pass){
+    this.ctx.fillStyle = val === 2 ? '#EDE4DB' : '#EBE0CB';
+    this.ctx.fillRect( ((120) * col) + 20, ((120) * row) + 20, 25 * pass, 25 * pass );
+    this.ctx.font = '30px sans-serif';
+    this.ctx.textAlign = 'center';
+    this.ctx.fillStyle = '#756E66';
+    if (pass > 2 ){
+      this.ctx.fillText(val, ((120) * col) + 70, ((120) * row) + 80);
+    }
+  }
+
+  draw(){
+    this.scoreDOM.innerHTML = this.score;
+    this.ctx.fillStyle = '#B9ADA1';
+    this.ctx.fillRect(0, 0, 500, 500);
     const colors ={
       0:'#CBC1B5',
       2:'#EDE4DB',
@@ -169,17 +209,17 @@ class Board{
     for(let i = 0; i < this.size; i++){
       for(let j = 0; j < this.size; j++){
         const val = this.grid[i][j];
-        ctx.fillStyle = colors[val];
-        ctx.fillRect( ((120) * j) + 20, ((120) * i) + 20, 100, 100 );
+        this.ctx.fillStyle = colors[val];
+        this.ctx.fillRect( ((120) * j) + 20, ((120) * i) + 20, 100, 100 );
         if (val){
-          ctx.font = '30px sans-serif';
-          ctx.textAlign = 'center';
+          this.ctx.font = '30px sans-serif';
+          this.ctx.textAlign = 'center';
           if(val < 8){
-            ctx.fillStyle = '#756E66';
+            this.ctx.fillStyle = '#756E66';
           } else {
-          ctx.fillStyle = '#FFFFFF';
+          this.ctx.fillStyle = '#FFFFFF';
           }
-          ctx.fillText(val, ((120) * j) + 70, ((120) * i) + 80);
+          this.ctx.fillText(val, ((120) * j) + 70, ((120) * i) + 80);
 
         }
       }

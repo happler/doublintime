@@ -5,52 +5,32 @@ class GameView{
   constructor(game, ctx){
     this.ctx = ctx;
     this.game = game;
-    this.score = document.getElementsByClassName('score')[0];
     this.resetGame = this.resetGame.bind(this);
+    this.draw = this.draw.bind(this);
+
   }
 
   resetGame(){
-    this.game = new Game();
+    this.game = new Game(this.ctx);
     this.start();
   }
-
-  moveUp(){
-    this.game.board.makeMove('up');
-    this.draw();
-  }
-
-  moveDown(){
-    this.game.board.makeMove('down');
-    this.draw();
-  }
-
-  moveLeft(){
-    this.game.board.makeMove('left');
-    this.draw();
-  }
-
-  moveRight(){
-    this.game.board.makeMove('right');
-    this.draw();
-  }
-
 
   bindKeyHandlers(){
     key('w, up', 'all',  () =>{
         this.game.board.makeMove('up');
-        this.draw();
+        // this.draw();
       });
     key('a, left', 'all', () =>{
         this.game.board.makeMove('left');
-        this.draw();
+        // this.draw();
       });
     key('s, down', 'all', () =>{
         this.game.board.makeMove('down');
-        this.draw();
+        // this.draw();
       });
     key('d, right', 'all', () =>{
         this.game.board.makeMove('right');
-        this.draw();
+        // this.draw();
       });
     const button = document.getElementsByClassName('new-game-button')[0];
     button.addEventListener('click', this.resetGame);

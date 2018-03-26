@@ -1,8 +1,10 @@
 import Board from './board';
 
 class Game{
-  constructor(){
-    this.board = new Board();
+  constructor(ctx){
+    this.board = new Board(ctx);
+    this.ctx = ctx;
+    this.draw = this.draw.bind(this);
     // this.setKeyListeners();
     this.render();
 
@@ -41,11 +43,11 @@ class Game{
     console.log(this.board.score);
   }
 
-  draw(ctx){
-    ctx.clearRect(0, 0, 500, 500);
-    ctx.fillStyle('#B9ADA1');
-    ctx.fillRect(0, 0, 500, 500);
-    this.board.draw(ctx);
+  draw(){
+    this.ctx.clearRect(0, 0, 500, 500);
+    this.ctx.fillStyle('#B9ADA1');
+    this.ctx.fillRect(0, 0, 500, 500);
+    this.board.draw();
   }
 }
 
