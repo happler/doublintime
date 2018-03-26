@@ -16,9 +16,9 @@ class Board{
     this.score = 0;
     this.gameOver = false;
     this.DIRS = ['up', 'down', 'left', 'right'];
-    // this.addRandomCell(this.emptySpaces());
-    // this.addRandomCell(this.emptySpaces());
-    this.addFixedCell();
+    this.addRandomCell(this.emptySpaces());
+    this.addRandomCell(this.emptySpaces());
+    // this.addFixedCell();
   }
 
   makeGrid(size){
@@ -33,21 +33,6 @@ class Board{
     }
     return grid;
   }
-  // oldAddRandomCell(){
-  //   let row = Math.floor(Math.random() * this.size);
-  //   let col = Math.floor(Math.random() * this.size);
-  //   while(this.grid[row][col]){
-  //     row = Math.floor(Math.random() * this.size);
-  //     col = Math.floor(Math.random() * this.size);
-  //   }
-  //   let val;
-  //   if(this.score < 2000){
-  //     val = 2;
-  //   }else{
-  //     val = ((Math.floor(Math.random() * 2) * 2) + 2);
-  //   }
-  //   this.grid[row][col] = val;
-  // }
 
   addRandomCell(empties){
     const randomCell = empties[Math.floor(Math.random() * empties.length)];
@@ -134,7 +119,7 @@ class Board{
       const empties = this.emptySpaces();
       if(empties.length){
         this.addRandomCell(empties);
-        if(this.isOver()){
+        if(empties.length === 1 && this.isOver()){
           this.gameOver = true;
         }
       }
@@ -153,7 +138,6 @@ class Board{
     return empties;
   }
   isOver(){
-    debugger
     for(let i = 0; i < this.DIRS.length; i++){
 
        if(!isEqual(this.potMove(this.DIRS[i]), this.grid)){
