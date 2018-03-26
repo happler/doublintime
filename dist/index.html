@@ -5,15 +5,21 @@
     <title>Dublin Time</title>
     <script type="application/javascript" src="../vendor/keymaster.js"></script>
     <script src="./main.js"> </script>
+    <link rel="stylesheet" href="../src/style.css">
+
   </head>
   <body>
 
-    <div class="">
-      <button type="button" name="New Game">New Game</button>
-      <span >Current Score:</span>
-      <span class='score'></span>
-    </div>
+    <div class="game-container">
+      <header>
+        <h2 class='Game-title'>Doublin' Time</h2>
+        <span class='score-label' >Current Score:</span>
+        <span class='score'></span>
+        <button class='new-game-button' type="button" name="New Game">New Game
+        </button>
+      </header>
     <canvas></canvas>
+  </div>
 
   </body>
 </html>

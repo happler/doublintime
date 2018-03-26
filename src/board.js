@@ -15,8 +15,8 @@ class Board{
     this.potScore = 0;
     this.score = 0;
     this.DIRS = ['up', 'down', 'left', 'right'];
-    this.addRandomCell();
-    this.addRandomCell();
+    this.addRandomCell(this.emptySpaces());
+    this.addRandomCell(this.emptySpaces());
     // this.addFixedCell();
   }
 
@@ -32,7 +32,7 @@ class Board{
     }
     return grid;
   }
-  addRandomCell(){
+  oldAddRandomCell(){
     let row = Math.floor(Math.random() * this.size);
     let col = Math.floor(Math.random() * this.size);
     while(this.grid[row][col]){
@@ -47,6 +47,13 @@ class Board{
     }
     this.grid[row][col] = val;
   }
+
+  addRandomCell(empties){
+    const randomCell = empties[Math.floor(Math.random() * empties.length)];
+    const val = Math.random() > .8 ? 4 : 2;
+    this.grid[randomCell[0]][randomCell[1]] = val;
+  }
+
   addFixedCell(){
     this.grid[0][0] = 0;
     this.grid[0][1] = 2;
@@ -123,25 +130,27 @@ class Board{
       this.score += this.potScore;
       this.potScore = 0;
       this.grid = postMove;
-      this.addRandomCell();
+      const empties = this.emptySpaces();
+      if(!empties.length && !this.isOver()){
+        this.addRandomCell(empties);
+      }
     }
 
   }
   emptySpaces(){
+    const empties = [];
     for(let row = 0; row < this.size; row++){
       for(let col = 0; col < this.size; col++){
-        if(this.grid[row][col] === 0){
-          return true;
+        if(!this.grid[row][col]){
+          empties.push([row, col]);
         }
       }
     }
-    return false;
+    return empties;
   }
   isOver(){
-    if(this.emptySpaces()){
-      return false;
-    }
     for(let i = 0; i < this.DIRS.length; i++){
+      
        if(!isEqual(this.potMoves(this.DIRS[i]), this.grid)){
          this.potScore = 0;
          return false;
