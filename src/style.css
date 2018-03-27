@@ -3,4 +3,26 @@
   flex-direction: column;
   align-items: center;
   background-color: forestgreen;
+  min-height: 680px;
+}
+
+.game-over-splash{
+  box-sizing: border-box;
+  width: 500px;
+  height: 500px;
+  background-color: rgba(69, 136, 52,0.7);
+  position: relative;
+  top:-500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-again-button{
+  margin-bottom: 300px;
+}
+
+.hidden{
+  display: none;
 }

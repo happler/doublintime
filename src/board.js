@@ -15,7 +15,6 @@ class Board{
     this.grid = this.makeGrid(size);
     this.potScore = 0;
     this.score = 0;
-    this.gameOver = false;
     this.scoreDOM = document.getElementsByClassName('score')[0];
     this.DIRS = ['up', 'down', 'left', 'right'];
     this.draw = this.draw.bind(this);
@@ -82,6 +81,7 @@ class Board{
     this.grid[3][1] = 2;
     this.grid[3][2] = 4;
     this.grid[3][3] = 8;
+    this.draw();
 
   }
 
@@ -152,10 +152,10 @@ class Board{
   }
 
   gameOver(){
-    const splash = document.getElementById('game-over-splash');
+    const splash = document.getElementsByClassName('game-over-splash')[0];
     const finalScore = document.getElementById('final-score');
-    this.splash.classList.remove('hidden');
-    finalScore.innerHTML(this.score);
+    splash.classList.remove('hidden');
+    finalScore.innerHTML = this.score;
 
   }
 

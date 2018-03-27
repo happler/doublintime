@@ -8,7 +8,7 @@ class GameView{
     this.resetGame = this.resetGame.bind(this);
     this.newButton = document.getElementsByClassName('new-game-button')[0];
     this.resetButton = document.getElementsByClassName('play-again-button')[0];
-    this.splash = document.getElementById('game-over-splash');
+    this.splash = document.getElementsByClassName('game-over-splash')[0];
 
   }
 
