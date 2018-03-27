@@ -20,9 +20,9 @@ class Board{
     this.draw = this.draw.bind(this);
     this.gameOver = this.gameOver.bind(this);
     this.draw();
-    // this.addRandomCell(this.emptySpaces());
-    // this.addRandomCell(this.emptySpaces());
-    this.addFixedCell();
+    this.addRandomCell(this.emptySpaces());
+    this.addRandomCell(this.emptySpaces());
+    // this.addFixedCell();
   }
 
   makeGrid(size){
@@ -68,20 +68,20 @@ class Board{
   addFixedCell(){
     this.grid[0][0] = 0;
     this.grid[0][1] = 2;
-    this.grid[0][2] = 4;
-    this.grid[0][3] = 8;
-    this.grid[1][0] = 16;
+    this.grid[0][2] = 2;
+    this.grid[0][3] = 2;
+    this.grid[1][0] = 2;
     this.grid[1][1] = 32;
     this.grid[1][2] = 64;
     this.grid[1][3] = 128;
-    this.grid[2][0] = 256;
+    this.grid[2][0] = 2;
     this.grid[2][1] = 512;
     this.grid[2][2] = 1024;
     this.grid[2][3] = 2048;
-    this.grid[3][0] = 4;
+    this.grid[3][0] = 2;
     this.grid[3][1] = 2;
-    this.grid[3][2] = 4;
-    this.grid[3][3] = 8;
+    this.grid[3][2] = 2;
+    this.grid[3][3] = 2;
     this.draw();
 
   }
