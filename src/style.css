@@ -41,9 +41,8 @@
   font-family: 'Nunito Sans', sans-serif;
 }
 
-.new-game-button{
-  /* height:20px; */
-  margin: 20px;
+.new-game-button, .play-again-button{
+  margin: 20px 10px;
   border:1px solid black;
   border-radius: 2px;
   font-family: 'Nunito Sans', sans-serif;
@@ -52,7 +51,7 @@
   font-size: 16px;
 }
 
-.new-game-button:hover{
+.new-game-button:hover, .play-again-button:hover{
   cursor: pointer;
   background-color: darkgrey;
   color: ghostwhite;
@@ -80,7 +79,7 @@
   font-family: 'Limelight', cursive;
   color: white;
   padding-bottom: 10px;
-  padding-top: 20px;
+  padding-top: 10px;
 
 }
 
@@ -95,6 +94,10 @@
 .score, #final-score{
   font-family: 'Press Start 2P', cursive;
   color: white;
+}
+
+#final-score{
+  line-height: 40px;
 }
 
 .score{
