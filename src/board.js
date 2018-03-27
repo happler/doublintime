@@ -18,7 +18,6 @@ class Board{
     this.gameOver = false;
     this.scoreDOM = document.getElementsByClassName('score')[0];
     this.DIRS = ['up', 'down', 'left', 'right'];
-
     this.draw = this.draw.bind(this);
     this.draw();
     this.addRandomCell(this.emptySpaces());
@@ -52,6 +51,10 @@ class Board{
           this.drawNewSquare(randomCell[0], randomCell[1], val, 3);
           setTimeout(() => {
             this.drawNewSquare(randomCell[0], randomCell[1], val, 4);
+            setTimeout(() => {
+              this.drawNewSquare(randomCell[0], randomCell[1], val, 5);
+
+            }, 25);
 
           }, 25);
 
@@ -81,7 +84,6 @@ class Board{
     this.grid[3][3] = 8;
 
   }
-
 
   collapse(arr){
     let newArr = [];
@@ -143,12 +145,20 @@ class Board{
       if(empties.length){
         this.addRandomCell(empties);
         if(empties.length === 1 && this.isOver()){
-          this.gameOver = true;
+          this.gameOver();
         }
       }
     }
+  }
+
+  gameOver(){
+    const splash = document.getElementById('game-over-splash');
+    const finalScore = document.getElementById('final-score');
+    this.splash.classList.remove('hidden');
+    finalScore.innerHTML(this.score);
 
   }
+
   emptySpaces(){
     const empties = [];
     for(let row = 0; row < this.size; row++){
@@ -160,13 +170,14 @@ class Board{
     }
     return empties;
   }
+
   isOver(){
     for(let i = 0; i < this.DIRS.length; i++){
 
-       if(!isEqual(this.potMove(this.DIRS[i]), this.grid)){
-         this.potScore = 0;
-         return false;
-       }
+      if(!isEqual(this.potMove(this.DIRS[i]), this.grid)){
+        this.potScore = 0;
+        return false;
+      }
     }
     this.potScore = 0;
     return true;
@@ -174,11 +185,11 @@ class Board{
 
   drawNewSquare(row, col, val, pass){
     this.ctx.fillStyle = val === 2 ? '#EDE4DB' : '#EBE0CB';
-    this.ctx.fillRect( ((120) * col) + 20, ((120) * row) + 20, 25 * pass, 25 * pass );
+    this.ctx.fillRect( ((120) * col) + 20 + (40 - 10 * (pass - 1)), ((120) * row) + 20 + (40 - 10 * (pass - 1)), 20 * pass, 20 * pass );
     this.ctx.font = '30px sans-serif';
     this.ctx.textAlign = 'center';
     this.ctx.fillStyle = '#756E66';
-    if (pass > 2 ){
+    if (pass > 1 ){
       this.ctx.fillText(val, ((120) * col) + 70, ((120) * row) + 80);
     }
   }
