@@ -2,12 +2,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../assets/img/background.jpg');
   /* min-height: 680px; */
 }
 
+body{
+  background-image: url('../assets/img/background.jpg');
+
+}
+
 .game-board{
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
   margin-top: 15px;
 }
 
@@ -80,13 +84,13 @@
   color: white;
   padding-bottom: 10px;
   padding-top: 10px;
+  padding-right: 10px;
 
 }
 
 .splash-score{
   display: flex;
   flex-direction: row;
-  width: 150px;
   justify-content: space-between;
 }
 
@@ -96,8 +100,41 @@
   color: white;
 }
 
+.personal-links{
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  color:white;
+  margin-top:  10px;
+  align-items:center;
+  justify-content: space-between;
+}
+
+/* .personal-links:hover{
+  color: darkgrey;
+} */
+
 #final-score{
   line-height: 40px;
+}
+
+.portfolio, .portfolio-by{
+  font-size: 24px;
+  font-family: 'Nunito Sans', sans-serif;
+
+}
+
+.portfolio:hover{
+  text-decoration: underline;
+  color: darkgrey;
+}
+
+.svg-inline--fa:hover{
+  color: darkgrey;
+}
+
+.fab{
+  width:50px;
 }
 
 .score{
@@ -111,7 +148,7 @@
   height: 500px;
   background-color: rgba(69, 67, 70,0.7);
   position: absolute;
-  top:219px;
+  top:145px;
   display: flex;
   flex-direction: column;
   align-items: center;
