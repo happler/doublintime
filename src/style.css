@@ -2,8 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: forestgreen;
-  min-height: 680px;
+  background-image: url('../assets/img/background.jpg');
+  /* min-height: 680px; */
+}
+
+.game-board{
+  margin-bottom: 100px;
+  margin-top: 15px;
 }
 
 
@@ -13,8 +18,87 @@
 
 .game-over-splash{
   display: none;
-  /* width:500px; */
-  /* height: 500px; */
+}
+
+.score-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions-new{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.instructions{
+  width: 275px;
+  word-wrap: normal;
+  color: white;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.new-game-button{
+  /* height:20px; */
+  margin: 20px;
+  border:1px solid black;
+  border-radius: 2px;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: lightgrey;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.new-game-button:hover{
+  cursor: pointer;
+  background-color: darkgrey;
+  color: ghostwhite;
+}
+
+.header{
+  width: 500px;
+}
+
+.title-score{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.game-title, .game-over{
+  font-family: 'Monoton', cursive;
+  /* font-weight: 700; */
+  font-size: 36px;
+  color: white;
+
+}
+
+.score-label{
+  font-family: 'Limelight', cursive;
+  color: white;
+  padding-bottom: 10px;
+  padding-top: 20px;
+
+}
+
+.splash-score{
+  display: flex;
+  flex-direction: row;
+  width: 150px;
+  justify-content: space-between;
+}
+
+
+.score, #final-score{
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+}
+
+.score{
+  /* margin-top: 15px; */
 }
 
 .shown{
@@ -22,9 +106,9 @@
   box-sizing: border-box;
   width: 500px;
   height: 500px;
-  background-color: rgba(69, 136, 52,0.7);
+  background-color: rgba(69, 67, 70,0.7);
   position: absolute;
-  top:95px;
+  top:219px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,12 +120,10 @@
 
   from {
   transform: scale(0);
-  background-color: rgba(69, 136, 52, 0.7)
   }
 
 
   to {
   transform: scale(1);
-  background-color: rgba(69, 136, 52, 0.7)
   }
 }
