@@ -155,7 +155,7 @@ class Board{
   gameOver(){
     const splash = document.getElementsByClassName('game-over-splash')[0];
     const finalScore = document.getElementById('final-score');
-    splash.classList.remove('hidden');
+    splash.classList.add('shown');
     finalScore.innerHTML = this.score;
 
   }

@@ -46,7 +46,7 @@ class GameView{
   start(){
     this.removeKeyHandlers();
     this.bindKeyHandlers();
-    this.splash.classList.add('hidden');
+    this.splash.classList.remove('shown');
 
   }
 

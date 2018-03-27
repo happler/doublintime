@@ -6,7 +6,16 @@
   min-height: 680px;
 }
 
+
+.play-again-button{
+  margin-bottom: 300px;
+}
+
 .game-over-splash{
+  display: none;
+}
+
+.shown{
   box-sizing: border-box;
   width: 500px;
   height: 500px;
@@ -18,12 +27,4 @@
   align-items: center;
   justify-content: center;
   transition: all 2s linear;
-}
-
-.play-again-button{
-  margin-bottom: 300px;
-}
-
-.hidden{
-  display: none;
 }
