@@ -18,10 +18,11 @@ class Board{
     this.scoreDOM = document.getElementsByClassName('score')[0];
     this.DIRS = ['up', 'down', 'left', 'right'];
     this.draw = this.draw.bind(this);
+    this.gameOver = this.gameOver.bind(this);
     this.draw();
-    this.addRandomCell(this.emptySpaces());
-    this.addRandomCell(this.emptySpaces());
-    // this.addFixedCell();
+    // this.addRandomCell(this.emptySpaces());
+    // this.addRandomCell(this.emptySpaces());
+    this.addFixedCell();
   }
 
   makeGrid(size){
@@ -145,7 +146,7 @@ class Board{
       if(empties.length){
         this.addRandomCell(empties);
         if(empties.length === 1 && this.isOver()){
-          this.gameOver();
+          setTimeout(this.gameOver, 250);
         }
       }
     }
