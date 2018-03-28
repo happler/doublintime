@@ -1,13 +1,5 @@
 import { zip, reverse, unzip, isEqual, cloneDeep } from 'lodash';
 
-const BOARD_DISPLAY=[
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0],
-  [0,0,0,0]
-];
-
-
 class Board{
   constructor(ctx, size = 4){
     this.size = size;
@@ -87,11 +79,13 @@ class Board{
   }
 
   collapse(arr){
-    let newArr = [];
+    const newArr = [];
     const resultArr = [];
+
     arr.forEach(el => {
       if (el) {newArr.push(el);}
     });
+
     for(let i = 0; i < newArr.length; i++){
       if (newArr[i] === newArr[i + 1]){
         resultArr.push(newArr[i] * 2);
@@ -101,7 +95,8 @@ class Board{
         resultArr.push(newArr[i]);
       }
     }
-    while(resultArr.length < this.size){ resultArr.push(0);}
+
+    while(resultArr.length < this.size){ resultArr.push(0); }
     return resultArr;
   }
 
@@ -213,7 +208,6 @@ class Board{
       1024:'#E8C15A',
       2048:'#EABF51',
     };
-    // console.log(this.grid);
     for(let i = 0; i < this.size; i++){
       for(let j = 0; j < this.size; j++){
         const val = this.grid[i][j];
