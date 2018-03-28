@@ -44,4 +44,4 @@
 ```
 
 ## Future Updates
-  Future versions will include a lightweight firebase backend for high score tracking, better formatting for mobile versions, touch input for supported devices, and movement via trackpad swipes.  I would also like to add in a variable board size, likely in conjunction with the mobile formatting.
+  Future versions will include a lightweight firebase backend for high score tracking, better formatting for mobile versions, touch input for supported devices, and movement via trackpad swipes (via PointerLockAPI).  I would also like to add in a variable board size, likely in conjunction with the mobile formatting.
