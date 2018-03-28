@@ -3,6 +3,7 @@
 # Doublin Time
 
 A JavaScript game played on a 4x4 grid, in which users combine tiles of like numbers to form a new tile of the sum of those numbers until they run out space, and there are no more moves left. Users move by pressing the arrow keys or WASD, which moves all tiles in that direction, and merges like tiles.
+
 ![Gif of gameplay](https://raw.githubusercontent.com/happler/doublintime/master/assets/img/doublin_time.gif)
 
 ## Technologies
