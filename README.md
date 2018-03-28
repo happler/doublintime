@@ -1,6 +1,6 @@
 [Link to the Live Version](https://www.harryappler.com/doublintime)
 # Doublin Time
-  A JavaScript game played on a 4x4 grid, in which users combine tiles of like numbers to form a new tile of the sum of those numbers until they run out space, and there are no more moves left.  Users move by pressing the arrow keys or W, A ,S ,D, which moves all tiles in that direction, and merges like tiles.
+  A JavaScript game played on a 4x4 grid, in which users combine tiles of like numbers to form a new tile of the sum of those numbers until they run out space, and there are no more moves left.  Users move by pressing the arrow keys or WASD, which moves all tiles in that direction, and merges like tiles.
 
 ## Technologies
   Vanilla JavaScript, HTML5, CSS3, Keymaster.js, lodash.js
@@ -41,6 +41,7 @@
     collArr = collArr.map(row => reverse(row));
     collArr = unzip(collArr);
     break;
-    ```
+```
+
 ## Future Updates
   Future versions will include a lightweight firebase backend for high score tracking, better formatting for mobile versions, touch input for supported devices, and movement via trackpad swipes.  I would also like to add in a variable board size, likely in conjunction with the mobile formatting.
