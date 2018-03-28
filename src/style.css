@@ -1,112 +1,111 @@
-.game-container{
+.game-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   /* min-height: 680px; */
 }
 
-body{
-  background-image: url('../assets/img/background.jpg');
-
+body {
+  background-image: url("../assets/img/background.jpg");
 }
 
-.game-board{
+.game-board {
   /* margin-bottom: 100px; */
   margin-top: 15px;
 }
 
-
-.play-again-button{
+.play-again-button {
   margin-bottom: 300px;
 }
 
-.game-over-splash{
+.game-over-splash {
   display: none;
 }
 
-.score-container{
+.score-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.instructions-new{
+.instructions-new {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.instructions{
+.instructions {
   width: 290px;
   word-wrap: normal;
   color: white;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 
-.new-game-button, .play-again-button{
+.new-game-button,
+.play-again-button {
   margin: 20px 10px;
-  border:1px solid black;
+  border: 1px solid black;
   border-radius: 2px;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   background-color: lightgrey;
   padding: 5px 10px;
   font-size: 16px;
 }
 
-.new-game-button:hover, .play-again-button:hover{
+.new-game-button:hover,
+.play-again-button:hover {
   cursor: pointer;
   background-color: darkgrey;
   color: ghostwhite;
 }
 
-.header{
+.header {
   width: 500px;
 }
 
-.title-score{
+.title-score {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.game-title, .game-over{
-  font-family: 'Monoton', cursive;
+.game-title,
+.game-over {
+  font-family: "Monoton", cursive;
   /* font-weight: 700; */
   font-size: 36px;
   color: white;
-
 }
 
-.score-label{
-  font-family: 'Limelight', cursive;
+.score-label {
+  font-family: "Limelight", cursive;
   color: white;
   padding-bottom: 10px;
   padding-top: 10px;
   padding-right: 10px;
-
 }
 
-.splash-score{
+.splash-score {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-
-.score, #final-score{
-  font-family: 'Press Start 2P', cursive;
+.score,
+#final-score {
+  font-family: "Press Start 2P", cursive;
   color: white;
 }
 
-.personal-links{
+.personal-links {
   width: 500px;
   display: flex;
   flex-direction: row;
-  color:white;
-  margin-top:  10px;
-  align-items:center;
+  color: white;
+  margin-top: 10px;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -114,41 +113,41 @@ body{
   color: darkgrey;
 } */
 
-#final-score{
+#final-score {
   line-height: 40px;
 }
 
-.portfolio, .portfolio-by{
+.portfolio,
+.portfolio-by {
   font-size: 24px;
-  font-family: 'Nunito Sans', sans-serif;
-
+  font-family: "Nunito Sans", sans-serif;
 }
 
-.portfolio:hover{
+.portfolio:hover {
   text-decoration: underline;
   color: darkgrey;
 }
 
-.svg-inline--fa:hover{
+.svg-inline--fa:hover {
   color: darkgrey;
 }
 
-.fab{
-  width:50px;
+.fab {
+  width: 50px;
 }
 
-.score{
+.score {
   /* margin-top: 15px; */
 }
 
-.shown{
+.shown {
   animation: 250ms fadeIn linear;
   box-sizing: border-box;
   width: 500px;
   height: 500px;
-  background-color: rgba(69, 67, 70,0.7);
+  background-color: rgba(69, 67, 70, 0.7);
   position: absolute;
-  top:145px;
+  top: 181px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,13 +156,11 @@ body{
 }
 
 @keyframes fadeIn {
-
   from {
-  transform: scale(0);
+    transform: scale(0);
   }
 
-
   to {
-  transform: scale(1);
+    transform: scale(1);
   }
 }
