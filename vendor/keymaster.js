@@ -71,12 +71,12 @@
       return;
     }
     updateModifierKey(event);
-
-    // see if we need to ignore the keypress (filter() can can be overridden)
-    // by default ignore key presses if a select, textarea, or input is focused
+    
+    //check if keypress should be ignored. (filter() can be overridden)
+    //Default: ignore key presses if a select, textarea, or input is focused
     if(!assignKey.filter.call(this, event)) return;
 
-    // abort if no potentially matching shortcuts found
+    // End program if no matching shortcuts found
     if (!(key in _handlers)) return;
 
     // for each potential shortcut
@@ -85,12 +85,12 @@
 
       // see if it's in the current scope
       if(handler.scope == scope || handler.scope == 'all'){
-        // check if modifiers match if any
+        // check if modifiers match if any exists
         modifiersMatch = handler.mods.length > 0;
         for(k in _mods)
           if((!_mods[k] && index(handler.mods, +k) > -1) ||
             (_mods[k] && index(handler.mods, +k) == -1)) modifiersMatch = false;
-        // call the handler and stop the event if neccessary
+        // If neccessary, call the handler and stop the event.
         if((handler.mods.length == 0 && !_mods[16] && !_mods[18] && !_mods[17] && !_mods[91]) || modifiersMatch){
           if(handler.method(event, handler)===false){
             if(event.preventDefault) event.preventDefault();
@@ -137,9 +137,10 @@
 
     if((keys[keys.length-1])=='')
       keys[keys.length-2] += ',';
+    
     // for each shortcut
     for (i = 0; i < keys.length; i++) {
-      // set modifier keys if any
+      // set modifier keys if any exists
       mods = [];
       key = keys[i].split('+');
       if(key.length > 1){
@@ -172,7 +173,7 @@
 
   function filter(event){
     var tagName = (event.target || event.srcElement).tagName;
-    // ignore keypressed in any elements that support keyboard data input
+    // ignore key pressed in any elements that support keyboard data input
     return !(tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
   }
 
@@ -221,7 +222,8 @@
     return k;
   }
 
-  // set window.key and window.key.set/get/deleteScope, and the default filter
+  // set window.key and window.key.set/get/deleteScope
+  //set the default filter
   global.key = assignKey;
   global.key.setScope = setScope;
   global.key.getScope = getScope;
