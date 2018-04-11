@@ -12,6 +12,10 @@ class GameView {
     this.splash = document.getElementsByClassName("game-over-splash")[0];
     this.lockChangeAlert = this.lockChangeAlert.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
+    this.debouncer = debounce(this.updatePosition, 50, {
+      leading: true,
+      trailing: false
+    });
   }
 
   resetGame() {
@@ -21,28 +25,14 @@ class GameView {
 
   lockChangeAlert() {
     if (
-      document.pointerLockElement === this.canvas ||
-      document.mozPointerLockElement === this.canvas
+      document.pointerLockElement === this.canvasEl ||
+      document.mozPointerLockElement === this.canvasEl
     ) {
       console.log("The pointer lock status is now locked");
-      document.addEventListener(
-        "mousemove",
-        debounce(this.updatePosition, 50, {
-          leading: true,
-          trailing: false
-        }),
-        false
-      );
+      document.addEventListener("mousemove", this.debouncer, false);
     } else {
       console.log("The pointer lock status is now unlocked");
-      document.removeEventListener(
-        "mousemove",
-        debounce(this.updatePosition, 50, {
-          leading: true,
-          trailing: false
-        }),
-        false
-      );
+      document.removeEventListener("mousemove", this.debouncer, false);
     }
   }
 
@@ -80,10 +70,10 @@ class GameView {
   }
 
   bindKeyHandlers() {
-    key("w, up", "all", this.game.board.delayedMakeMove("up"));
-    key("a, left", "all", this.game.board.delayedMakeMove("left"));
-    key("s, down", "all", this.game.board.delayedMakeMove("down"));
-    key("d, right", "all", this.game.board.delayedMakeMove("right"));
+    key("w, up", "all", () => this.game.board.makeMove("up"));
+    key("a, left", "all", () => this.game.board.makeMove("left"));
+    key("s, down", "all", () => this.game.board.makeMove("down"));
+    key("d, right", "all", () => this.game.board.makeMove("right"));
     this.newButton.addEventListener("click", this.resetGame);
     this.resetButton.addEventListener("click", this.resetGame);
     this.canvasEl.addEventListener("click", () =>
