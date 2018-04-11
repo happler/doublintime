@@ -1,4 +1,5 @@
 import Game from "./game";
+import { zip, reverse, unzip, isEqual, cloneDeep, debounce } from "lodash";
 
 class GameView {
   constructor(game, ctx, canvasEl) {
@@ -24,10 +25,24 @@ class GameView {
       document.mozPointerLockElement === this.canvas
     ) {
       console.log("The pointer lock status is now locked");
-      document.addEventListener("mousemove", this.updatePosition, false);
+      document.addEventListener(
+        "mousemove",
+        debounce(this.updatePosition, 50, {
+          leading: true,
+          trailing: false
+        }),
+        false
+      );
     } else {
       console.log("The pointer lock status is now unlocked");
-      document.removeEventListener("mousemove", this.updatePosition, false);
+      document.removeEventListener(
+        "mousemove",
+        debounce(this.updatePosition, 50, {
+          leading: true,
+          trailing: false
+        }),
+        false
+      );
     }
   }
 
@@ -36,37 +51,39 @@ class GameView {
     const deltaY = e.movementY;
     console.log(`deltaX =>${deltaX}, deltaY =>${deltaY}`);
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
-      if (Math.sign(deltaX) === 1) {
-        console.log("right");
-        this.game.board.makeMove("right");
-      } else {
-        console.log("left");
-        this.game.board.makeMove("left");
+      switch (Math.sign(deltaX)) {
+        case 1:
+          console.log("right");
+          this.game.board.makeMove("right");
+          break;
+        case -1:
+          console.log("left");
+          this.game.board.makeMove("left");
+          break;
+        default:
+          break;
       }
-    } else {
-      if (Math.sign(deltaY) === 1) {
-        console.log("down");
-        this.game.board.makeMove("down");
-      } else {
-        console.log("up");
-        this.game.board.makeMove("up");
+    } else if (Math.abs(deltaX) < Math.abs(deltaY)) {
+      switch (Math.sign(deltaY)) {
+        case 1:
+          console.log("down");
+          this.game.board.makeMove("down");
+          break;
+        case -1:
+          console.log("up");
+          this.game.board.makeMove("up");
+          break;
+        default:
+          break;
       }
     }
   }
 
   bindKeyHandlers() {
-    key("w, up", "all", () => {
-      this.game.board.makeMove("up");
-    });
-    key("a, left", "all", () => {
-      this.game.board.makeMove("left");
-    });
-    key("s, down", "all", () => {
-      this.game.board.makeMove("down");
-    });
-    key("d, right", "all", () => {
-      this.game.board.makeMove("right");
-    });
+    key("w, up", "all", this.game.board.delayedMakeMove("up"));
+    key("a, left", "all", this.game.board.delayedMakeMove("left"));
+    key("s, down", "all", this.game.board.delayedMakeMove("down"));
+    key("d, right", "all", this.game.board.delayedMakeMove("right"));
     this.newButton.addEventListener("click", this.resetGame);
     this.resetButton.addEventListener("click", this.resetGame);
     this.canvasEl.addEventListener("click", () =>

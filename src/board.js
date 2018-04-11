@@ -1,4 +1,4 @@
-import { zip, reverse, unzip, isEqual, cloneDeep } from "lodash";
+import { zip, reverse, unzip, isEqual, cloneDeep, debounce } from "lodash";
 
 class Board {
   constructor(ctx, size = 4) {
@@ -11,6 +11,7 @@ class Board {
     this.DIRS = ["up", "down", "left", "right"];
     this.draw = this.draw.bind(this);
     this.gameOver = this.gameOver.bind(this);
+    this.makeMove = this.makeMove.bind(this);
     this.draw();
     this.addRandomCell(this.emptySpaces());
     this.addRandomCell(this.emptySpaces());
@@ -124,6 +125,13 @@ class Board {
         collArr = this.grid;
     }
     return collArr;
+  }
+
+  delayedMakeMove(dir) {
+    debounce(() => this.makeMove(dir), 1000, {
+      leading: true,
+      trailing: false
+    });
   }
 
   makeMove(dir) {
