@@ -1,5 +1,5 @@
 import Game from "./game";
-import { zip, reverse, unzip, isEqual, cloneDeep, debounce } from "lodash";
+import { zip, reverse, unzip, isEqual, cloneDeep, throttle } from "lodash";
 
 class GameView {
   constructor(game, ctx, canvasEl) {
@@ -12,7 +12,7 @@ class GameView {
     this.splash = document.getElementsByClassName("game-over-splash")[0];
     this.lockChangeAlert = this.lockChangeAlert.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
-    this.debouncer = debounce(this.updatePosition, 50, {
+    this.debouncer = throttle(this.updatePosition, 0, {
       leading: true,
       trailing: false
     });
@@ -44,11 +44,11 @@ class GameView {
       switch (Math.sign(deltaX)) {
         case 1:
           console.log("right");
-          this.game.board.makeMove("right");
+          this.game.board.delayedMakeMove("right");
           break;
         case -1:
           console.log("left");
-          this.game.board.makeMove("left");
+          this.game.board.delayedMakeMove("left");
           break;
         default:
           break;
@@ -57,11 +57,11 @@ class GameView {
       switch (Math.sign(deltaY)) {
         case 1:
           console.log("down");
-          this.game.board.makeMove("down");
+          this.game.board.delayedMakeMove("down");
           break;
         case -1:
           console.log("up");
-          this.game.board.makeMove("up");
+          this.game.board.delayedMakeMove("up");
           break;
         default:
           break;
@@ -70,10 +70,22 @@ class GameView {
   }
 
   bindKeyHandlers() {
-    key("w, up", "all", () => this.game.board.makeMove("up"));
-    key("a, left", "all", () => this.game.board.makeMove("left"));
-    key("s, down", "all", () => this.game.board.makeMove("down"));
-    key("d, right", "all", () => this.game.board.makeMove("right"));
+    key("w, up", "all", throttle(() => this.game.board.makeMove("up"), 1000));
+    key(
+      "a, left",
+      "all",
+      throttle(() => this.game.board.makeMove("left"), 1000)
+    );
+    key(
+      "s, down",
+      "all",
+      throttle(() => this.game.board.makeMove("down"), 1000)
+    );
+    key(
+      "d, right",
+      "all",
+      throttle(() => this.game.board.makeMove("right"), 1000)
+    );
     this.newButton.addEventListener("click", this.resetGame);
     this.resetButton.addEventListener("click", this.resetGame);
     this.canvasEl.addEventListener("click", () =>

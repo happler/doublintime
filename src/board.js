@@ -1,4 +1,12 @@
-import { zip, reverse, unzip, isEqual, cloneDeep, debounce } from "lodash";
+import {
+  zip,
+  reverse,
+  unzip,
+  isEqual,
+  cloneDeep,
+  debounce,
+  throttle
+} from "lodash";
 
 class Board {
   constructor(ctx, size = 4) {
@@ -128,10 +136,16 @@ class Board {
   }
 
   delayedMakeMove(dir) {
-    debounce(() => this.makeMove(dir), 1000, {
-      leading: true,
-      trailing: false
-    });
+    throttle(
+      () => {
+        this.makeMove(dir);
+      },
+      1000,
+      {
+        leading: true,
+        trailing: false
+      }
+    );
   }
 
   makeMove(dir) {
