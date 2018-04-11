@@ -70,22 +70,10 @@ class GameView {
   }
 
   bindKeyHandlers() {
-    key("w, up", "all", throttle(() => this.game.board.makeMove("up"), 1000));
-    key(
-      "a, left",
-      "all",
-      throttle(() => this.game.board.makeMove("left"), 1000)
-    );
-    key(
-      "s, down",
-      "all",
-      throttle(() => this.game.board.makeMove("down"), 1000)
-    );
-    key(
-      "d, right",
-      "all",
-      throttle(() => this.game.board.makeMove("right"), 1000)
-    );
+    key("w, up", "all", () => this.game.board.makeMove("up"));
+    key("a, left", "all", () => this.game.board.makeMove("left"));
+    key("s, down", "all", () => this.game.board.makeMove("down"));
+    key("d, right", "all", () => this.game.board.makeMove("right"));
     this.newButton.addEventListener("click", this.resetGame);
     this.resetButton.addEventListener("click", this.resetGame);
     this.canvasEl.addEventListener("click", () =>

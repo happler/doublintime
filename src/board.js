@@ -19,7 +19,11 @@ class Board {
     this.DIRS = ["up", "down", "left", "right"];
     this.draw = this.draw.bind(this);
     this.gameOver = this.gameOver.bind(this);
-    this.makeMove = this.makeMove.bind(this);
+    // this.makeMove = this.makeMove.bind(this);
+    this.makeMove = debounce(this.makeMove.bind(this), 250, {
+      leading: true,
+      trailing: false
+    });
     this.draw();
     this.addRandomCell(this.emptySpaces());
     this.addRandomCell(this.emptySpaces());
