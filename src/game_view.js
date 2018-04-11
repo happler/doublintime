@@ -44,11 +44,11 @@ class GameView {
       switch (Math.sign(deltaX)) {
         case 1:
           console.log("right");
-          this.game.board.delayedMakeMove("right");
+          this.game.board.makeMove("right");
           break;
         case -1:
           console.log("left");
-          this.game.board.delayedMakeMove("left");
+          this.game.board.makeMove("left");
           break;
         default:
           break;
@@ -57,11 +57,11 @@ class GameView {
       switch (Math.sign(deltaY)) {
         case 1:
           console.log("down");
-          this.game.board.delayedMakeMove("down");
+          this.game.board.makeMove("down");
           break;
         case -1:
           console.log("up");
-          this.game.board.delayedMakeMove("up");
+          this.game.board.makeMove("up");
           break;
         default:
           break;
