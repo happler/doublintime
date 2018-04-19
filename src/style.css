@@ -128,12 +128,39 @@ body {
   color: darkgrey;
 }
 
-.svg-inline--fa:hover {
-  color: darkgrey;
+.personal-links__angel,
+.personal-links__linkedin,
+.personal-links__github {
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
 }
 
-.fab {
-  width: 50px;
+.personal-links__angel {
+  background-image: url("../assets/img/lightal.png");
+  background-size: contain;
+  background-position: center;
+}
+.personal-links__linkedin {
+  background-image: url("../assets/img/lightin.png");
+  background-size: contain;
+  background-position: 60% 50%;
+}
+.personal-links__github {
+  background-image: url("../assets/img/lightgit.png");
+  background-size: contain;
+  background-position: center;
+}
+
+.personal-links__angel:hover {
+  background-image: url("../assets/img/darkal.png");
+}
+
+.personal-links__linkedin:hover {
+  background-image: url("../assets/img/darkin.png");
+}
+.personal-links__github:hover {
+  background-image: url("../assets/img/darkgit.png");
 }
 
 .score {
