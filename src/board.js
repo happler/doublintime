@@ -19,8 +19,7 @@ class Board {
     this.DIRS = ["up", "down", "left", "right"];
     this.draw = this.draw.bind(this);
     this.gameOver = this.gameOver.bind(this);
-    // this.makeMove = this.makeMove.bind(this);
-    this.makeMove = debounce(this.makeMove.bind(this), 250, {
+    this.makeMove = debounce(this.makeMove.bind(this), 100, {
       leading: true,
       trailing: false
     });
