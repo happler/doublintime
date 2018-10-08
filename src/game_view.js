@@ -6,6 +6,7 @@ class GameView {
     this.game = game;
     this.ctx = ctx;
     this.canvasEl = canvasEl;
+    this.lockButton = document.getElementsByClassName("pointer-lock-button")[0];
     this.resetGame = this.resetGame.bind(this);
     this.newButton = document.getElementsByClassName("new-game-button")[0];
     this.resetButton = document.getElementsByClassName("play-again-button")[0];
@@ -25,14 +26,17 @@ class GameView {
 
   lockChangeAlert() {
     if (
-      document.pointerLockElement === this.canvasEl ||
-      document.mozPointerLockElement === this.canvasEl
+      document.pointerLockElement === this.lockButton ||
+      document.mozPointerLockElement === this.lockButton
     ) {
       console.log("The pointer lock status is now locked");
       document.addEventListener("mousemove", this.debouncer, false);
+      this.lockButton.textContent = "Hit 'Esc' to exit mouse controls";
     } else {
       console.log("The pointer lock status is now unlocked");
       document.removeEventListener("mousemove", this.debouncer, false);
+      this.lockButton.textContent = "Click here to play with your mouse";
+
     }
   }
 
@@ -76,8 +80,8 @@ class GameView {
     key("d, right", "all", () => this.game.board.makeMove("right"));
     this.newButton.addEventListener("click", this.resetGame);
     this.resetButton.addEventListener("click", this.resetGame);
-    this.canvasEl.addEventListener("click", () =>
-      this.canvasEl.requestPointerLock()
+    this.lockButton.addEventListener("click", () =>
+      this.lockButton.requestPointerLock()
     );
     document.addEventListener("pointerlockchange", this.lockChangeAlert, false);
   }
