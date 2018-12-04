@@ -29,11 +29,11 @@ class GameView {
       document.pointerLockElement === this.lockButton ||
       document.mozPointerLockElement === this.lockButton
     ) {
-      console.log("The pointer lock status is now locked");
+      // console.log("The pointer lock status is now locked");
       document.addEventListener("mousemove", this.debouncer, false);
       this.lockButton.textContent = "Hit 'Esc' to exit mouse controls";
     } else {
-      console.log("The pointer lock status is now unlocked");
+      // console.log("The pointer lock status is now unlocked");
       document.removeEventListener("mousemove", this.debouncer, false);
       this.lockButton.textContent = "Click here to play with your mouse";
 
@@ -43,15 +43,15 @@ class GameView {
   updatePosition(e) {
     const deltaX = e.movementX;
     const deltaY = e.movementY;
-    console.log(`deltaX =>${deltaX}, deltaY =>${deltaY}`);
+    // console.log(`deltaX =>${deltaX}, deltaY =>${deltaY}`);
     if (Math.abs(deltaX) > Math.abs(deltaY)) {
       switch (Math.sign(deltaX)) {
         case 1:
-          console.log("right");
+          // console.log("right");
           this.game.board.makeMove("right");
           break;
         case -1:
-          console.log("left");
+          // console.log("left");
           this.game.board.makeMove("left");
           break;
         default:
@@ -60,11 +60,11 @@ class GameView {
     } else if (Math.abs(deltaX) < Math.abs(deltaY)) {
       switch (Math.sign(deltaY)) {
         case 1:
-          console.log("down");
+          // console.log("down");
           this.game.board.makeMove("down");
           break;
         case -1:
-          console.log("up");
+          // console.log("up");
           this.game.board.makeMove("up");
           break;
         default:
